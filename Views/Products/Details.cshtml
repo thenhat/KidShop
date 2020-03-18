@@ -1,0 +1,29 @@
+﻿@model KidShop.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div class="container">
+    <div class="row card mt-4">
+        <img class="col-md-6 img-fluid" src="@Url.Content(Model.Thumbnail)" alt="" style="height:400px; object-fit:contain">
+        <div class="col-md-6 card-body">
+            <h3 class="card-title">@Html.DisplayFor(model => model.ProductName)</h3>
+            <h4>@Html.DisplayFor(model => model.Price) VNĐ</h4>
+            <p class="card-text">@Html.DisplayFor(model => model.Description)</p>
+            <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+            4.0 stars
+            <div style="margin-top:2rem">
+                <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("AddToCart", "ShoppingCarts", new { productId = Model.ProductId, quantity = 1 })'">Thêm vào giỏ hàng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId }) |
+    @Html.ActionLink("Back to List", "ListProduct", new { }) |
+    @Html.ActionLink("Home", "Index")
+</p>

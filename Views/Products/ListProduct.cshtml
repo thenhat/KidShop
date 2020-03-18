@@ -1,0 +1,62 @@
+﻿@model IEnumerable<KidShop.Models.Product>
+
+@{
+    ViewBag.Title = "ListProduct";
+}
+
+    <h2>ListProduct</h2>
+
+<span>
+    @Html.ActionLink("Create New", "Create")
+</span> |
+<span>
+    @Html.ActionLink("Home", "Index")
+</span>
+
+<table class="table">
+    <tr>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.Category.CategoryName)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.Thumbnail)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td style="text-align:center">
+                <img src="@Url.Content(item.Thumbnail)" alt="" style="height: 100px; width: auto" />
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ProductId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })
+            </td>
+        </tr>
+    }
+
+</table>
