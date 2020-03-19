@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using KidShop.Data;
 using KidShop.Models;
+using PagedList;
 
 namespace KidShop.Controllers
 {
@@ -16,16 +17,16 @@ namespace KidShop.Controllers
         private MyDbContext db = new MyDbContext();
 
         // GET: Products
-        public ActionResult Index(string searchTerm, string CategoryId)
+        public ActionResult Index(string searchTerm, string CategoryId, int? page)
         {
-            var products = db.Products.Include(p => p.Category);
+            var products = db.Products.Include(p => p.Category).OrderBy(x => x.ProductId);
             ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "CategoryName");
 
             if (String.IsNullOrEmpty(CategoryId))
             {
                 if (!String.IsNullOrEmpty(searchTerm))
                 {
-                    products = db.Products.Where(p => p.ProductName.Contains(searchTerm));
+                    products = db.Products.Where(p => p.ProductName.Contains(searchTerm)).OrderBy(x => x.ProductId);
                 }
             }
             else
@@ -34,17 +35,22 @@ namespace KidShop.Controllers
                 {
                     if (String.IsNullOrEmpty(searchTerm))
                     {
-                        products = db.Products.Where(p => p.CategoryId.Contains(CategoryId));
+                        products = db.Products.Where(p => p.CategoryId.Contains(CategoryId)).OrderBy(x => x.ProductId);
                     }
                     else
                     {
-                        products = db.Products.Where(p => (p.ProductName.Contains(searchTerm) && p.CategoryId.Contains(CategoryId)));
+                        products = db.Products.Where(p => (p.ProductName.Contains(searchTerm) && p.CategoryId.Contains(CategoryId))).OrderBy(x => x.ProductId);
                     }
                 }
             }
 
             ViewBag.SearchTerm = searchTerm;
-            return View(products.ToList());
+
+            if (page == null) page = 1;
+            int pageSize = 9;
+            int pageNumber = (page ?? 1);
+
+            return View(products.ToPagedList(pageNumber, pageSize));
         }
         
         public ActionResult ListProduct()

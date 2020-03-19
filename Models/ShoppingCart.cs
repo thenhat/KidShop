@@ -32,6 +32,10 @@ namespace KidShop.Models
             {
                 var existingItem = Items[product.ProductId];
                 cartItem.Quantity += existingItem.Quantity;
+                if(cartItem.Quantity < 1)
+                {
+                    cartItem.Quantity = 1;
+                }
             }
             if (existKey)
             {

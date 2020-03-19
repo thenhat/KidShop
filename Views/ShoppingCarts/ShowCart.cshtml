@@ -24,7 +24,13 @@
             <td><img src="@item.ProductThumbnail" style="width: 100px" /></td>
             <td>@item.ProductName</td>
             <td>@item.ProductPrice</td>
-            <td>@item.Quantity</td>
+            <td>
+                <span class="border border-secondary">
+                    <button type="button" class="btn btn-outline-secondary" onclick="location.href='@Url.Action("AddToCart", "ShoppingCarts", new { productId = item.ProductId, quantity = -1 })'">-</button>
+                    @item.Quantity
+                    <button type="button" class="btn btn-outline-secondary" onclick="location.href='@Url.Action("AddToCart", "ShoppingCarts", new { productId = item.ProductId, quantity = 1 })'">+</button>
+                </span>
+            </td>
             <td>@item.TotalItemPrice</td>
         </tr>
         index++;

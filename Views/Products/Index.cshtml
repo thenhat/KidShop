@@ -1,4 +1,5 @@
-﻿@model IEnumerable<KidShop.Models.Product>
+﻿@model PagedList.IPagedList<KidShop.Models.Product>
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "Index";
@@ -73,3 +74,9 @@
 <div>
     @Html.ActionLink("Back to List", "ListProduct", new { })
 </div>
+
+<br />
+Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page }))

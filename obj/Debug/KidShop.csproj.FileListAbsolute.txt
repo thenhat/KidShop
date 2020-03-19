@@ -80,3 +80,7 @@ C:\Users\DELL\source\repos\KidShop\KidShop\obj\Debug\KidShop.csproj.CopyComplete
 C:\Users\DELL\source\repos\KidShop\KidShop\obj\Debug\KidShop.dll
 C:\Users\DELL\source\repos\KidShop\KidShop\obj\Debug\KidShop.pdb
 C:\Users\DELL\source\repos\KidShop\KidShop\obj\Debug\KidShop.csprojAssemblyReference.cache
+C:\Users\DELL\source\repos\KidShop\KidShop\bin\PagedList.dll
+C:\Users\DELL\source\repos\KidShop\KidShop\bin\PagedList.Mvc.dll
+C:\Users\DELL\source\repos\KidShop\KidShop\bin\PagedList.xml
+C:\Users\DELL\source\repos\KidShop\KidShop\bin\PagedList.Mvc.xml
